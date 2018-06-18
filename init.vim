@@ -2,24 +2,24 @@
 call plug#begin('$HOME/.config/nvim/plugged')
 
 " General
-Plug 'git@github.com:scrooloose/nerdtree.git'
-Plug 'git@github.com:tpope/vim-surround.git'
-Plug 'git@github.com:tpope/vim-fugitive.git'
-Plug 'git@github.com:benekastah/neomake.git'
-Plug 'git@github.com:scrooloose/nerdcommenter.git'
-Plug 'git@github.com:godlygeek/tabular.git'
-Plug 'git@github.com:tpope/vim-unimpaired.git'
-Plug 'git@github.com:greyblake/vim-colors-solarized.git'
-Plug 'git@github.com:vim-airline/vim-airline.git'
-Plug 'git@github.com:tpope/vim-rhubarb.git'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'benekastah/neomake'
+Plug 'scrooloose/nerdcommenter'
+Plug 'godlygeek/tabular'
+Plug 'tpope/vim-unimpaired'
+Plug 'greyblake/vim-colors-solarized'
+Plug 'vim-airline/vim-airline'
+Plug 'tpope/vim-rhubarb'
 Plug 'cloudhead/neovim-fuzzy'
 " Plug 'w0rp/ale'  " Lints
 
 " Snipmate and snippets
-Plug 'git@github.com:MarcWeber/vim-addon-mw-utils.git'
-Plug 'git@github.com:tomtom/tlib_vim.git'
-Plug 'git@github.com:garbas/vim-snipmate.git'
-Plug 'git@github.com:honza/vim-snippets.git'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
+Plug 'honza/vim-snippets'
 
 "Javscript
 Plug 'pangloss/vim-javascript'
@@ -31,19 +31,19 @@ Plug 'cespare/vim-toml'
 Plug 'racer-rust/vim-racer'
 
 " Ruby specific
-Plug 'git@github.com:vim-ruby/vim-ruby.git'
-Plug 'git@github.com:tpope/vim-endwise.git'
-Plug 'git@github.com:tpope/vim-rails.git'
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-rails'
 Plug 'pest-parser/pest.vim'
 
 " Coffee Script
-Plug 'git@github.com:kchmck/vim-coffee-script.git'
+Plug 'kchmck/vim-coffee-script'
 
 " Esperanto keyboard
-Plug 'git@github.com:greyblake/vim-esperanto.git'
+Plug 'greyblake/vim-esperanto'
 
 " Jenkins
-Plug 'git@github.com:martinda/Jenkinsfile-vim-syntax.git'
+Plug 'martinda/Jenkinsfile-vim-syntax'
 
 call plug#end()
 
