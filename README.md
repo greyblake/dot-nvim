@@ -15,6 +15,6 @@ Pull the repository into `$HOME/.config/nvim` (Debian):
     mkdir -p $HOME/.config/nvim/
     git clone git@github.com:greyblake/dot-nvim.git $HOME/.config/nvim
 
-Enter `nvim` and install plugin:
+Enter `nvim` and install plugins:
 
     :PlugInstall
