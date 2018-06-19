@@ -102,7 +102,7 @@ imap <C-b> <Left>
 imap <C-f> <Right>
 imap <C-e> <End>
 imap <C-a> <Esc>I
-imap <C-k> <Esc>c$
+imap <C-k> <Esc>lc$
 imap <C-u> <Esc>c^<del>
 imap <A-b> <Esc>bi
 imap <A-f> <Esc>ea
