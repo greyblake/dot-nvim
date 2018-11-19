@@ -1,5 +1,5 @@
-call plug#begin('$HOME/.config/nvim/plugged')
 " Plugins
+call plug#begin('$HOME/.config/nvim/plugged')
 
 " General
 Plug 'scrooloose/nerdtree'
@@ -17,6 +17,12 @@ Plug 'w0rp/ale'
 
 " Autocomplete (requires python3)
 " Plug 'Shougo/deoplete.nvim'
+Plug 'greyblake/vim-colors-solarized'
+Plug 'vim-airline/vim-airline'
+Plug 'tpope/vim-rhubarb'
+Plug 'cloudhead/neovim-fuzzy'
+Plug 'tpope/vim-abolish'
+" Plug 'w0rp/ale'  " Lints
 
 " Snipmate and snippets
 Plug 'MarcWeber/vim-addon-mw-utils'
