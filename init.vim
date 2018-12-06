@@ -1,19 +1,21 @@
-" Plugins
 call plug#begin('$HOME/.config/nvim/plugged')
+" Plugins
 
 " General
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-surround'
+Plug 'greyblake/vim-colors-solarized'
 Plug 'tpope/vim-fugitive'
 Plug 'benekastah/neomake'
 Plug 'scrooloose/nerdcommenter'
 Plug 'godlygeek/tabular'
 Plug 'tpope/vim-unimpaired'
-Plug 'greyblake/vim-colors-solarized'
-Plug 'vim-airline/vim-airline'
-Plug 'tpope/vim-rhubarb'
-Plug 'cloudhead/neovim-fuzzy'
-" Plug 'w0rp/ale'  " Lints
+Plug 'itchyny/lightline.vim'
+Plug 'vimlab/split-term.vim'
+Plug 'rafi/awesome-vim-colorschemes'
+
+" Autocomplete (requires python3)
+" Plug 'Shougo/deoplete.nvim'
 
 " Snipmate and snippets
 Plug 'MarcWeber/vim-addon-mw-utils'
@@ -21,29 +23,29 @@ Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets'
 
+"HTML
+Plug 'mattn/emmet-vim'
+
 "Javscript
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
+Plug 'posva/vim-vue'
+Plug 'bdauria/angular-cli.vim'
 
 " Rust
 Plug 'rust-lang/rust.vim'
 Plug 'cespare/vim-toml'
 Plug 'racer-rust/vim-racer'
+Plug 'pest-parser/pest.vim'
 
 " Ruby specific
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-rails'
-Plug 'pest-parser/pest.vim'
-
-" Coffee Script
-Plug 'kchmck/vim-coffee-script'
+Plug 'sovetnik/vim-hanami'
 
 " Esperanto keyboard
 Plug 'greyblake/vim-esperanto'
-
-" Jenkins
-Plug 'martinda/Jenkinsfile-vim-syntax'
 
 call plug#end()
 
@@ -58,6 +60,8 @@ set number
 set backspace=indent,eol,start  "To make backspace work in normal way
 set spell
 set expandtab
+set splitright
+set splitbelow
 
 " Indent settings
 set shiftwidth=2
@@ -102,7 +106,7 @@ imap <C-b> <Left>
 imap <C-f> <Right>
 imap <C-e> <End>
 imap <C-a> <Esc>I
-imap <C-k> <Esc>lc$
+imap <C-k> <Esc>c$
 imap <C-u> <Esc>c^<del>
 imap <A-b> <Esc>bi
 imap <A-f> <Esc>ea
@@ -132,8 +136,8 @@ let s:callbacks = {
 \ }
 call jobstart(['bash', '-c', 'sleep 0.1'], extend({'shell': 'shell 2'}, s:callbacks))
 
-" directory with swap files
-set dir=$HOME/.vim/tmp
+" Customize Hanami plugin
+let g:hanami_open_strategy = 'vsplit'
 
-nnoremap <C-f> :FuzzyOpen<CR>
-nnoremap <C-s> :FuzzyGrep<CR>
+" Activate Angular plugin
+autocmd VimEnter * if globpath('.,..','node_modules/@angular') != '' | call angular_cli#init() | endif
