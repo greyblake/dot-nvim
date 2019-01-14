@@ -13,6 +13,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'itchyny/lightline.vim'
 Plug 'vimlab/split-term.vim'
 Plug 'rafi/awesome-vim-colorschemes'
+Plug 'w0rp/ale'
 
 " Autocomplete (requires python3)
 " Plug 'Shougo/deoplete.nvim'
@@ -141,3 +142,11 @@ let g:hanami_open_strategy = 'vsplit'
 
 " Activate Angular plugin
 autocmd VimEnter * if globpath('.,..','node_modules/@angular') != '' | call angular_cli#init() | endif
+
+" Configure ALE lints
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\   'ruby': ['rubocop'],
+\   'rust': ['cargo', 'rustfmt']
+\}
