@@ -14,6 +14,16 @@ Plug 'itchyny/lightline.vim'
 Plug 'vimlab/split-term.vim'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'w0rp/ale'
+Plug 'ryanoasis/vim-devicons'
+Plug 'jceb/vim-orgmode'
+
+" Markdown
+Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'dhruvasagar/vim-table-mode'
+
+" HTTP Client
+Plug 'baverman/vial'
+Plug 'baverman/vial-http'
 
 " Autocomplete (requires python3)
 " Plug 'Shougo/deoplete.nvim'
@@ -156,3 +166,7 @@ let g:ale_fixers = {
 \   'ruby': ['rubocop'],
 \   'rust': ['cargo', 'rustfmt']
 \}
+
+
+" For vim-markdown-preview plugin
+let vim_markdown_preview_github=1
