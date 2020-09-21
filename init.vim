@@ -16,6 +16,10 @@ Plug 'rafi/awesome-vim-colorschemes'
 Plug 'w0rp/ale'
 Plug 'ryanoasis/vim-devicons'
 Plug 'jceb/vim-orgmode'
+Plug 'mustache/vim-mustache-handlebars'
+
+" Theme
+Plug 'ayu-theme/ayu-vim'
 
 " Markdown
 Plug 'JamshedVesuna/vim-markdown-preview'
@@ -60,6 +64,11 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-rails'
 Plug 'sovetnik/vim-hanami'
+Plug 'kremso/vim-spectator'
+
+" PlantUML
+Plug 'scrooloose/vim-slumlord'
+Plug 'aklt/plantuml-syntax'
 
 " Esperanto keyboard
 Plug 'greyblake/vim-esperanto'
