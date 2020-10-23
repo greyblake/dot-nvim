@@ -17,6 +17,7 @@ Plug 'w0rp/ale'
 Plug 'ryanoasis/vim-devicons'
 Plug 'jceb/vim-orgmode'
 Plug 'mustache/vim-mustache-handlebars'
+Plug 'gyim/vim-boxdraw'
 
 " Theme
 Plug 'ayu-theme/ayu-vim'
@@ -34,7 +35,9 @@ Plug 'baverman/vial-http'
 Plug 'greyblake/vim-colors-solarized'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-rhubarb'
-Plug 'cloudhead/neovim-fuzzy'
+" Plug 'cloudhead/neovim-fuzzy'
+Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
+Plug 'lotabout/skim.vim'
 Plug 'tpope/vim-abolish'
 " Plug 'w0rp/ale'  " Lints
 
@@ -50,6 +53,7 @@ Plug 'mattn/emmet-vim'
 "Javscript
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
+Plug 'Quramy/tsuquyomi' " Autocomplete for TS
 Plug 'posva/vim-vue'
 Plug 'bdauria/angular-cli.vim'
 
@@ -128,6 +132,12 @@ colorscheme solarized
 
 " Mappings
 nmap <silent> <Leader>p :NERDTreeToggle<CR>
+
+" Fuzzy search with skim (sk)
+nmap <C-f> :Files<CR>
+
+" Search with ripgrep
+nmap <C-s> :Rg<Cr>
 
 " Bubble selection (it depends on unimpaired plugin)
 nmap <C-k> [e
