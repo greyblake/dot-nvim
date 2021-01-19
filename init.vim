@@ -21,6 +21,7 @@ Plug 'gyim/vim-boxdraw'
 
 " Theme
 Plug 'ayu-theme/ayu-vim'
+Plug 'morhetz/gruvbox'
 
 " Markdown
 Plug 'JamshedVesuna/vim-markdown-preview'
@@ -127,7 +128,8 @@ autocmd! InsertLeave * Neomake
 
 " Set Solarized color scheme
 set background=dark
-colorscheme solarized
+" colorscheme solarized
+colorscheme gruvbox
 
 
 " Mappings
@@ -173,16 +175,6 @@ endfor
 " Remove trailing spaces on save
 autocmd BufWritePre * :%s/\s\+$//e
 
-" Work around to set colorscheme for GUI
-function! s:setColorScheme(job_id, data, event)
-  colorscheme solarized
-endfunction
-let s:callbacks = {
-\ 'on_stdout': function('s:setColorScheme'),
-\ 'on_stderr': function('s:setColorScheme'),
-\ 'on_exit': function('s:setColorScheme')
-\ }
-call jobstart(['bash', '-c', 'sleep 0.1'], extend({'shell': 'shell 2'}, s:callbacks))
 
 " Customize Hanami plugin
 let g:hanami_open_strategy = 'vsplit'
@@ -218,19 +210,26 @@ set shortmess+=c
 
 " Configure LSP
 " https://github.com/neovim/nvim-lspconfig#rust_analyzer
+" See: https://sharksforarms.dev/posts/neovim-rust/
+
 lua <<EOF
-
 -- nvim_lsp object
-local nvim_lsp = require'nvim_lsp'
+local nvim_lsp = require'lspconfig'
 
--- function to attach completion and diagnostics
--- when setting up lsp
+-- function to attach completion when setting up lsp
 local on_attach = function(client)
     require'completion'.on_attach(client)
-    require'diagnostic'.on_attach(client)
 end
 
 -- Enable rust_analyzer
 nvim_lsp.rust_analyzer.setup({ on_attach=on_attach })
 
+-- Enable diagnostics
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = true,
+    signs = true,
+    update_in_insert = true,
+  }
+)
 EOF
