@@ -24,7 +24,7 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'morhetz/gruvbox'
 
 " Markdown
-Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'dhruvasagar/vim-table-mode'
 
 " HTTP Client
@@ -195,6 +195,8 @@ let g:ale_fixers = {
 let vim_markdown_preview_github=1
 
 
+" Use the old verison of snipmate parser
+let g:snipMate = { 'snippet_version' : 0 }
 
 
 " Configure LSP for rust-analyzer
@@ -222,7 +224,18 @@ local on_attach = function(client)
 end
 
 -- Enable rust_analyzer
-nvim_lsp.rust_analyzer.setup({ on_attach=on_attach })
+nvim_lsp.rust_analyzer.setup({
+  on_attach=on_attach,
+  settings = {
+      ["rust-analyzer"] = {
+        diagnostics = {
+            enable = true,
+            disabled = {"unresolved-proc-macro"},
+            enableExperimental = true,
+        }
+      }
+  }
+})
 
 -- Enable diagnostics
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -233,3 +246,5 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   }
 )
 EOF
+
+nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
