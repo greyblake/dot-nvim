@@ -12,7 +12,7 @@ Plug 'godlygeek/tabular'
 Plug 'tpope/vim-unimpaired'
 Plug 'itchyny/lightline.vim'
 Plug 'vimlab/split-term.vim'
-Plug 'rafi/awesome-vim-colorschemes'
+" Plug 'rafi/awesome-vim-colorschemes'
 Plug 'w0rp/ale'
 Plug 'ryanoasis/vim-devicons'
 Plug 'jceb/vim-orgmode'
@@ -22,6 +22,8 @@ Plug 'gyim/vim-boxdraw'
 " Theme
 Plug 'ayu-theme/ayu-vim'
 Plug 'morhetz/gruvbox'
+Plug 'lifepillar/vim-gruvbox8'
+Plug 'joshdick/onedark.vim'
 
 " Markdown
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
@@ -65,10 +67,10 @@ Plug 'racer-rust/vim-racer'
 Plug 'pest-parser/pest.vim'
 
 " Collection of common configurations for the Nvim LSP client
-Plug 'neovim/nvim-lspconfig'
+" Plug 'neovim/nvim-lspconfig'
 
 " Extensions to built-in LSP, for example, providing type inlay hints
-Plug 'tjdevries/lsp_extensions.nvim'
+" Plug 'tjdevries/lsp_extensions.nvim'
 
 " Autocompletion framework for built-in LSP
 Plug 'nvim-lua/completion-nvim'
@@ -90,6 +92,13 @@ Plug 'aklt/plantuml-syntax'
 " Esperanto keyboard
 Plug 'greyblake/vim-esperanto'
 
+
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" Or build from source code by using yarn: https://yarnpkg.com
+" Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+
 call plug#end()
 
 
@@ -107,8 +116,8 @@ set splitright
 set splitbelow
 
 " Indent settings
-set shiftwidth=2
-set softtabstop=2
+set shiftwidth=4
+set softtabstop=4
 set expandtab
 set autoindent
 set nowrap
@@ -129,7 +138,7 @@ autocmd! InsertLeave * Neomake
 " Set Solarized color scheme
 set background=dark
 " colorscheme solarized
-colorscheme gruvbox
+colorscheme gruvbox8
 
 
 " Mappings
@@ -214,37 +223,38 @@ set shortmess+=c
 " https://github.com/neovim/nvim-lspconfig#rust_analyzer
 " See: https://sharksforarms.dev/posts/neovim-rust/
 
-lua <<EOF
--- nvim_lsp object
-local nvim_lsp = require'lspconfig'
+" lua <<EOF
+" -- nvim_lsp object
+" local nvim_lsp = require'lspconfig'
+"
+" -- function to attach completion when setting up lsp
+" local on_attach = function(client)
+"     require'completion'.on_attach(client)
+" end
+"
+" -- Enable rust_analyzer
+" nvim_lsp.rust_analyzer.setup({
+"   on_attach=on_attach,
+"   settings = {
+"       ["rust-analyzer"] = {
+"         diagnostics = {
+"             enable = true,
+"             disabled = {"unresolved-proc-macro"},
+"             enableExperimental = true,
+"         }
+"       }
+"   }
+" })
+"
+" -- Enable diagnostics
+" vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+"   vim.lsp.diagnostic.on_publish_diagnostics, {
+"     virtual_text = true,
+"     signs = true,
+"     update_in_insert = true,
+"   }
+" )
+" EOF
 
--- function to attach completion when setting up lsp
-local on_attach = function(client)
-    require'completion'.on_attach(client)
-end
-
--- Enable rust_analyzer
-nvim_lsp.rust_analyzer.setup({
-  on_attach=on_attach,
-  settings = {
-      ["rust-analyzer"] = {
-        diagnostics = {
-            enable = true,
-            disabled = {"unresolved-proc-macro"},
-            enableExperimental = true,
-        }
-      }
-  }
-})
-
--- Enable diagnostics
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = true,
-    signs = true,
-    update_in_insert = true,
-  }
-)
-EOF
-
-nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+" source ~/.config/nvim/coc_defaults.vim
+source ~/.config/nvim/coc_mappings.vim
