@@ -18,6 +18,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'jceb/vim-orgmode'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'gyim/vim-boxdraw'
+Plug 'preservim/tagbar'
 
 " Theme
 Plug 'ayu-theme/ayu-vim'
@@ -35,7 +36,8 @@ Plug 'baverman/vial-http'
 
 " Autocomplete (requires python3)
 " Plug 'Shougo/deoplete.nvim'
-Plug 'greyblake/vim-colors-solarized'
+"Plug 'greyblake/vim-colors-solarized'
+Plug 'rafi/awesome-vim-colorschemes'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-rhubarb'
 " Plug 'cloudhead/neovim-fuzzy'
@@ -137,7 +139,7 @@ autocmd! InsertLeave * Neomake
 
 " Set Solarized color scheme
 set background=dark
-" colorscheme solarized
+" colorscheme solarized8
 colorscheme gruvbox8
 
 
@@ -149,6 +151,37 @@ nmap <C-f> :Files<CR>
 
 " Search with ripgrep
 nmap <C-s> :Rg<Cr>
+
+" Toggle tagbar
+nmap <F8> :TagbarToggle<CR>
+let g:tagbar_width=60
+" Special mapping for .tsx
+let g:tagbar_type_typescriptreact = {
+\ 'ctagstype': 'typescript',
+\ 'kinds': [
+  \ 'c:class',
+  \ 'n:namespace',
+  \ 'f:function',
+  \ 'G:generator',
+  \ 'v:variable',
+  \ 'm:method',
+  \ 'p:property',
+  \ 'i:interface',
+  \ 'g:enum',
+  \ 't:type',
+  \ 'a:alias',
+\ ],
+\'sro': '.',
+  \ 'kind2scope' : {
+  \ 'c' : 'class',
+  \ 'n' : 'namespace',
+  \ 'i' : 'interface',
+  \ 'f' : 'function',
+  \ 'G' : 'generator',
+  \ 'm' : 'method',
+  \ 'p' : 'property',
+  \},
+\ }
 
 " Bubble selection (it depends on unimpaired plugin)
 nmap <C-k> [e
