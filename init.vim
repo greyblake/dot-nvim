@@ -19,20 +19,26 @@ Plug 'jceb/vim-orgmode'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'gyim/vim-boxdraw'
 Plug 'preservim/tagbar'
+Plug 'sheerun/vim-polyglot'
+Plug 'easymotion/vim-easymotion'
 
 " Theme
 Plug 'ayu-theme/ayu-vim'
 Plug 'morhetz/gruvbox'
 Plug 'lifepillar/vim-gruvbox8'
 Plug 'joshdick/onedark.vim'
+Plug 'Mofiqul/vscode.nvim'
+" Plug 'Mofiqul/dracula.nvim'
+Plug 'romgrk/doom-one.vim'
 
 " Markdown
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'dhruvasagar/vim-table-mode'
+Plug 'sotte/presenting.vim'  " Presentation
 
 " HTTP Client
-Plug 'baverman/vial'
-Plug 'baverman/vial-http'
+" Plug 'baverman/vial'
+" Plug 'baverman/vial-http'
 
 " Autocomplete (requires python3)
 " Plug 'Shougo/deoplete.nvim'
@@ -62,11 +68,16 @@ Plug 'Quramy/tsuquyomi' " Autocomplete for TS
 Plug 'posva/vim-vue'
 Plug 'bdauria/angular-cli.vim'
 
+" Rescript
+Plug 'rescript-lang/vim-rescript'
+
 " Rust
 Plug 'rust-lang/rust.vim'
 Plug 'cespare/vim-toml'
-Plug 'racer-rust/vim-racer'
 Plug 'pest-parser/pest.vim'
+
+" Solidity (Ethereum)
+Plug 'tomlion/vim-solidity'
 
 " Collection of common configurations for the Nvim LSP client
 " Plug 'neovim/nvim-lspconfig'
@@ -91,12 +102,16 @@ Plug 'sovetnik/vim-hanami'
 Plug 'scrooloose/vim-slumlord'
 Plug 'aklt/plantuml-syntax'
 
+" Vim Wiki
+" Plug 'vimwiki/vimwiki'
+
 " Esperanto keyboard
 Plug 'greyblake/vim-esperanto'
 
 
+" Plug 'github/copilot.vim'
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'v0.0.80'}
 
 " Or build from source code by using yarn: https://yarnpkg.com
 " Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
@@ -120,9 +135,9 @@ set splitbelow
 " Indent settings
 set shiftwidth=4
 set softtabstop=4
-set expandtab
-set autoindent
-set nowrap
+" set expandtab
+" set autoindent
+" set nowrap
 
 " Load ftplugins and indent files
 filetype plugin on
@@ -252,42 +267,26 @@ set completeopt=menuone,noinsert,noselect
 " Avoid showing extra messages when using completion
 set shortmess+=c
 
-" Configure LSP
-" https://github.com/neovim/nvim-lspconfig#rust_analyzer
-" See: https://sharksforarms.dev/posts/neovim-rust/
-
-" lua <<EOF
-" -- nvim_lsp object
-" local nvim_lsp = require'lspconfig'
-"
-" -- function to attach completion when setting up lsp
-" local on_attach = function(client)
-"     require'completion'.on_attach(client)
-" end
-"
-" -- Enable rust_analyzer
-" nvim_lsp.rust_analyzer.setup({
-"   on_attach=on_attach,
-"   settings = {
-"       ["rust-analyzer"] = {
-"         diagnostics = {
-"             enable = true,
-"             disabled = {"unresolved-proc-macro"},
-"             enableExperimental = true,
-"         }
-"       }
-"   }
-" })
-"
-" -- Enable diagnostics
-" vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-"   vim.lsp.diagnostic.on_publish_diagnostics, {
-"     virtual_text = true,
-"     signs = true,
-"     update_in_insert = true,
-"   }
-" )
-" EOF
-
-" source ~/.config/nvim/coc_defaults.vim
 source ~/.config/nvim/coc_mappings.vim
+
+
+" " Vim-Script:
+" " For dark theme
+" let g:vscode_style = "dark"
+" " For light theme
+" " let g:vscode_style = "light"
+" " Enable transparent background.
+" let g:vscode_transparency = 1
+" " Enable italic comment
+" let g:vscode_italic_comment = 1
+" " Disable nvim-tree background color
+" let g:vscode_disable_nvimtree_bg = v:true
+" colorscheme dracula
+
+nmap <C-a> :CocAction<CR>
+
+" Rust: macro expand
+" 1) Open a new buffer
+" 2) Run expandMacro
+" 3) Set filetype=rust for proper syntax highlighting
+nmap me :split<CR> :CocCommand rust-analyzer.expandMacro<CR> :set filetype=rust<CR>
