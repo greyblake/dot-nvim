@@ -30,6 +30,7 @@ Plug 'joshdick/onedark.vim'
 Plug 'Mofiqul/vscode.nvim'
 " Plug 'Mofiqul/dracula.nvim'
 Plug 'romgrk/doom-one.vim'
+Plug 'tomasiser/vim-code-dark'
 
 " Markdown
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
@@ -98,6 +99,9 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-rails'
 Plug 'sovetnik/vim-hanami'
 
+" Idris
+" Plug 'edwinb/idris2-vim'
+
 " PlantUML
 Plug 'scrooloose/vim-slumlord'
 Plug 'aklt/plantuml-syntax'
@@ -107,6 +111,7 @@ Plug 'aklt/plantuml-syntax'
 
 " Esperanto keyboard
 Plug 'greyblake/vim-esperanto'
+
 
 
 " Plug 'github/copilot.vim'
@@ -156,6 +161,7 @@ autocmd! InsertLeave * Neomake
 set background=dark
 " colorscheme solarized8
 colorscheme gruvbox8
+" colorscheme codedark
 
 
 " Mappings

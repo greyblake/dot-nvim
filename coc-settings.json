@@ -14,5 +14,6 @@
     }
   },
   // If you use neovim you can enable codelenses with this
-  "codeLens.enable": true
+  "codeLens.enable": false,
+  "rust-analyzer.completion.autoimport.enable": true,
 }
