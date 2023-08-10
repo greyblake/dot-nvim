@@ -112,6 +112,9 @@ Plug 'aklt/plantuml-syntax'
 " Esperanto keyboard
 Plug 'greyblake/vim-esperanto'
 
+" Justfile
+Plug 'NoahTheDuke/vim-just'
+
 
 
 " Plug 'github/copilot.vim'
