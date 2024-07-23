@@ -1,0 +1,8 @@
+nmap <silent> <buffer> gd <Plug>(omnisharp_go_to_definition)
+nmap <silent> <buffer> gy <Plug>(omnisharp_go_to_type_definition)
+nmap <silent> <buffer> gi <Plug>(omnisharp_find_implementations)
+nmap <silent> <buffer> gr <Plug>(omnisharp_find_usages)
+nmap <silent> <buffer> K  <Plug>(omnisharp_documentation)
+nmap <silent> <buffer> <leader>f <Plug>(omnisharp_code_format)
+nmap <silent> <buffer> <leader>ac <Plug>(omnisharp_code_actions)
+nmap <silent> <buffer> <leader>re <Plug>(omnisharp_rename)

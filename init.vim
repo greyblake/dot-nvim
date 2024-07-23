@@ -72,6 +72,9 @@ Plug 'bdauria/angular-cli.vim'
 " Rescript
 Plug 'rescript-lang/vim-rescript'
 
+" Roc
+Plug 'ChrisWellsWood/roc.vim'
+
 " Rust
 Plug 'rust-lang/rust.vim'
 Plug 'cespare/vim-toml'
@@ -115,11 +118,15 @@ Plug 'greyblake/vim-esperanto'
 " Justfile
 Plug 'NoahTheDuke/vim-just'
 
+" C# / OmniSharp
+Plug 'OmniSharp/omnisharp-vim'
 
 
-" Plug 'github/copilot.vim'
 
-Plug 'neoclide/coc.nvim', {'branch': 'v0.0.80'}
+Plug 'github/copilot.vim'
+
+" Plug 'neoclide/coc.nvim', {'branch': 'v0.0.80'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Or build from source code by using yarn: https://yarnpkg.com
 " Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
