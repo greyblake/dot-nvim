@@ -18,3 +18,12 @@ Pull the repository into `$HOME/.config/nvim` (Debian):
 Enter `nvim` and install plugins:
 
     :PlugInstall
+
+## Extra dependencies
+
+
+For clipboard:
+
+```
+sudo apt install xsel xclip wl-clipboard
+```

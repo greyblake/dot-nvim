@@ -12,6 +12,8 @@ Plug 'godlygeek/tabular'
 Plug 'tpope/vim-unimpaired'
 Plug 'itchyny/lightline.vim'
 Plug 'vimlab/split-term.vim'
+Plug 'atiladefreitas/dooing'
+
 " Plug 'rafi/awesome-vim-colorschemes'
 Plug 'w0rp/ale'
 Plug 'ryanoasis/vim-devicons'
@@ -61,6 +63,7 @@ Plug 'honza/vim-snippets'
 
 "HTML
 Plug 'mattn/emmet-vim'
+" Plug 'barrett-ruth/live-server.nvim'
 
 "Javscript
 Plug 'pangloss/vim-javascript'
