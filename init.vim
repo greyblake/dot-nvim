@@ -33,6 +33,11 @@ Plug 'Mofiqul/vscode.nvim'
 " Plug 'Mofiqul/dracula.nvim'
 Plug 'romgrk/doom-one.vim'
 Plug 'tomasiser/vim-code-dark'
+Plug 'folke/tokyonight.nvim'
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+Plug 'rebelot/kanagawa.nvim'
+Plug 'EdenEast/nightfox.nvim'
+
 
 " Markdown
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
@@ -170,11 +175,11 @@ let g:neomake_verbose=0
 autocmd! BufWritePost * Neomake
 autocmd! InsertLeave * Neomake
 
-" Set Solarized color scheme
-set background=dark
-" colorscheme solarized8
+" Set colorscheme
+" set background=dark
 colorscheme gruvbox8
-" colorscheme codedark
+" colorscheme kanagawa-wave
+" colorscheme nightfox
 
 
 " Mappings
@@ -288,19 +293,6 @@ set shortmess+=c
 
 source ~/.config/nvim/coc_mappings.vim
 
-
-" " Vim-Script:
-" " For dark theme
-" let g:vscode_style = "dark"
-" " For light theme
-" " let g:vscode_style = "light"
-" " Enable transparent background.
-" let g:vscode_transparency = 1
-" " Enable italic comment
-" let g:vscode_italic_comment = 1
-" " Disable nvim-tree background color
-" let g:vscode_disable_nvimtree_bg = v:true
-" colorscheme dracula
 
 nmap <C-a> :CocAction<CR>
 
