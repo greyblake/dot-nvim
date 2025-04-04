@@ -14,6 +14,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'vimlab/split-term.vim'
 Plug 'atiladefreitas/dooing'
 
+
 " Plug 'rafi/awesome-vim-colorschemes'
 Plug 'w0rp/ale'
 Plug 'ryanoasis/vim-devicons'
@@ -37,6 +38,9 @@ Plug 'folke/tokyonight.nvim'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'rebelot/kanagawa.nvim'
 Plug 'EdenEast/nightfox.nvim'
+
+" Github
+Plug 'ruanyl/vim-gh-line'
 
 
 " Markdown
@@ -301,3 +305,6 @@ nmap <C-a> :CocAction<CR>
 " 2) Run expandMacro
 " 3) Set filetype=rust for proper syntax highlighting
 nmap me :split<CR> :CocCommand rust-analyzer.expandMacro<CR> :set filetype=rust<CR>
+
+" Configure 'ruanyl/vim-gh-line' to open Github in Firefox
+let g:gh_open_command = 'firefox '
