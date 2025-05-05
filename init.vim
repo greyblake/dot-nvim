@@ -308,3 +308,7 @@ nmap me :split<CR> :CocCommand rust-analyzer.expandMacro<CR> :set filetype=rust<
 
 " Configure 'ruanyl/vim-gh-line' to open Github in Firefox
 let g:gh_open_command = 'firefox '
+
+" Do not create a new file when saving a file.
+" (Otherwise it causes some issues with file watchers)
+set backupcopy=yes
