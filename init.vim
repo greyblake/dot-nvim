@@ -14,6 +14,11 @@ Plug 'itchyny/lightline.vim'
 Plug 'vimlab/split-term.vim'
 Plug 'atiladefreitas/dooing'
 
+Plug 'nvim-treesitter/nvim-treesitter'
+
+" WASM
+Plug 'rhysd/vim-wasm'
+
 
 " Plug 'rafi/awesome-vim-colorschemes'
 Plug 'w0rp/ale'
@@ -135,7 +140,12 @@ Plug 'OmniSharp/omnisharp-vim'
 
 
 
+" Copilot
 Plug 'github/copilot.vim'
+
+" Copilot Chat
+Plug 'nvim-lua/plenary.nvim'
+Plug 'CopilotC-Nvim/CopilotChat.nvim'
 
 " Plug 'neoclide/coc.nvim', {'branch': 'v0.0.80'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -312,3 +322,55 @@ let g:gh_open_command = 'firefox '
 " Do not create a new file when saving a file.
 " (Otherwise it causes some issues with file watchers)
 set backupcopy=yes
+
+
+" Copilot Chat setup
+lua << EOF
+require("CopilotChat").setup {
+  -- See Configuration section for options
+}
+EOF
+
+
+
+
+
+" Open Shortcut Story from Git Branch
+function! OpenShortcutStoryFromGitBranch()
+  let l:branch = system('git rev-parse --abbrev-ref HEAD 2>/dev/null')
+  if v:shell_error
+    echohl ErrorMsg
+    echom 'Not a git repository or failed to get branch name.'
+    echohl None
+    return
+  endif
+  let l:branch = trim(l:branch)
+
+  let l:matches = matchlist(l:branch, 'sc-\(\d\+\)')
+  if len(l:matches) < 2
+    echohl ErrorMsg
+    echom 'Failed to extract story number from branch name: ' . l:branch
+    echohl None
+    return
+  endif
+  let l:story_number = l:matches[1]
+
+  let l:url = 'https://app.shortcut.com/impero/story/' . l:story_number
+
+  if has('macunix')
+    call jobstart(['open', l:url], {'detach': v:true})
+  elseif has('unix')
+    call jobstart(['xdg-open', l:url], {'detach': v:true})
+  elseif has('win32') || has('win64')
+    call jobstart(['start', l:url], {'detach': v:true})
+  else
+    echohl ErrorMsg
+    echom 'Unsupported platform for opening browser.'
+    echohl None
+    return
+  endif
+
+  echom 'Opened: ' . l:url
+endfunction
+
+nnoremap <silent> \sc :call OpenShortcutStoryFromGitBranch()<CR>
