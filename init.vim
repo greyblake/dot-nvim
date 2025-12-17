@@ -107,10 +107,10 @@ Plug 'tomlion/vim-solidity'
 " Plug 'tjdevries/lsp_extensions.nvim'
 
 " Autocompletion framework for built-in LSP
-Plug 'nvim-lua/completion-nvim'
+" Plug 'nvim-lua/completion-nvim'
 
 " Diagnostic navigation and settings for built-in LSP
-Plug 'nvim-lua/diagnostic-nvim'
+" Plug 'nvim-lua/diagnostic-nvim'
 
 
 " Ruby specific
@@ -285,6 +285,11 @@ let g:ale_fixers = {
 \   'rust': ['cargo', 'rustfmt']
 \}
 
+" Disable ALE linters for Rust (using CoC for LSP instead)
+let g:ale_linters = {
+\   'rust': []
+\}
+
 
 " For vim-markdown-preview plugin
 let vim_markdown_preview_github=1
@@ -374,3 +379,29 @@ function! OpenShortcutStoryFromGitBranch()
 endfunction
 
 nnoremap <silent> \sc :call OpenShortcutStoryFromGitBranch()<CR>
+
+
+" WASM / WIT
+
+lua << EOF
+local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+parser_config.wit = {
+    install_info = {
+        url = "https://github.com/liamwh/tree-sitter-wit",
+        files = { "src/parser.c" },
+        branch = "main",
+    },
+}
+EOF
+
+
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+    highlight = { enable = true },
+}
+EOF
+
+augroup wit_ft
+    autocmd!
+    autocmd BufRead,BufNewFile *.wit setfiletype wit
+augroup END
