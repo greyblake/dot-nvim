@@ -194,6 +194,7 @@ autocmd! InsertLeave * Neomake
 colorscheme gruvbox8
 " colorscheme kanagawa-wave
 " colorscheme nightfox
+" colorscheme solarized
 
 
 " Mappings
@@ -202,7 +203,8 @@ nmap <silent> <Leader>p :NERDTreeToggle<CR>
 " Fuzzy search with skim (sk)
 nmap <C-f> :Files<CR>
 
-" Search with ripgrep
+" Search with ripgrep (override Rg to use {q} placeholder for skim 4.x)
+command! -bang -nargs=* Rg call fzf#vim#grep_interactive('rg --column --line-number --color=always '.get(g:, 'rg_opts', '').' {q} '.(<q-args> is# '' ? '.' : <q-args>), 1, fzf#vim#with_preview('right:+{2}-/2'), <bang>0)
 nmap <C-s> :Rg<Cr>
 
 " Toggle tagbar
