@@ -14,7 +14,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'vimlab/split-term.vim'
 Plug 'atiladefreitas/dooing'
 
-Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter', { 'branch': 'main', 'do': ':TSUpdate' }
 
 " WASM
 Plug 'rhysd/vim-wasm'
@@ -64,8 +64,7 @@ Plug 'rafi/awesome-vim-colorschemes'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-rhubarb'
 " Plug 'cloudhead/neovim-fuzzy'
-Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
-Plug 'lotabout/skim.vim'
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'tpope/vim-abolish'
 " Plug 'w0rp/ale'  " Lints
 
@@ -200,12 +199,9 @@ colorscheme gruvbox8
 " Mappings
 nmap <silent> <Leader>p :NERDTreeToggle<CR>
 
-" Fuzzy search with skim (sk)
-nmap <C-f> :Files<CR>
-
-" Search with ripgrep (override Rg to use {q} placeholder for skim 4.x)
-command! -bang -nargs=* Rg call fzf#vim#grep_interactive('rg --column --line-number --color=always '.get(g:, 'rg_opts', '').' {q} '.(<q-args> is# '' ? '.' : <q-args>), 1, fzf#vim#with_preview('right:+{2}-/2'), <bang>0)
-nmap <C-s> :Rg<Cr>
+" Fuzzy search with Telescope
+nmap <C-f> :Telescope find_files<CR>
+nmap <C-s> :Telescope live_grep<CR>
 
 " Toggle tagbar
 nmap <F8> :TagbarToggle<CR>
@@ -386,21 +382,28 @@ nnoremap <silent> \sc :call OpenShortcutStoryFromGitBranch()<CR>
 " WASM / WIT
 
 lua << EOF
-local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-parser_config.wit = {
-    install_info = {
-        url = "https://github.com/liamwh/tree-sitter-wit",
-        files = { "src/parser.c" },
-        branch = "main",
-    },
-}
-EOF
+-- Register custom WIT parser for the main-branch installer
+vim.api.nvim_create_autocmd('User', {
+    pattern = 'TSUpdate',
+    callback = function()
+        require('nvim-treesitter.parsers').wit = {
+            install_info = {
+                url = 'https://github.com/liamwh/tree-sitter-wit',
+                branch = 'main',
+            },
+        }
+    end,
+})
 
-
-lua << EOF
-require'nvim-treesitter.configs'.setup {
-    highlight = { enable = true },
-}
+-- Enable treesitter highlighting wherever a parser is available
+vim.api.nvim_create_autocmd('FileType', {
+    callback = function(args)
+        local lang = vim.treesitter.language.get_lang(args.match)
+        if lang and pcall(vim.treesitter.language.add, lang) then
+            pcall(vim.treesitter.start, args.buf, lang)
+        end
+    end,
+})
 EOF
 
 augroup wit_ft
