@@ -139,13 +139,6 @@ Plug 'OmniSharp/omnisharp-vim'
 
 
 
-" Copilot
-Plug 'github/copilot.vim'
-
-" Copilot Chat
-Plug 'nvim-lua/plenary.nvim'
-Plug 'CopilotC-Nvim/CopilotChat.nvim'
-
 " Plug 'neoclide/coc.nvim', {'branch': 'v0.0.80'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -296,6 +289,20 @@ let vim_markdown_preview_github=1
 " Use the old verison of snipmate parser
 let g:snipMate = { 'snippet_version' : 0 }
 
+" Neovim 0.10+ maps <Tab>/<S-Tab> to vim.snippet.jump by default, which blocks
+" vim-snipmate's <unique> maps. Drop the defaults and install snipmate's maps.
+augroup snipmate_tab_fix
+    autocmd!
+    autocmd VimEnter * silent! iunmap <Tab>
+    autocmd VimEnter * silent! sunmap <Tab>
+    autocmd VimEnter * silent! iunmap <S-Tab>
+    autocmd VimEnter * silent! sunmap <S-Tab>
+    autocmd VimEnter * imap <Tab> <Plug>snipMateNextOrTrigger
+    autocmd VimEnter * smap <Tab> <Plug>snipMateNextOrTrigger
+    autocmd VimEnter * imap <S-Tab> <Plug>snipMateBack
+    autocmd VimEnter * smap <S-Tab> <Plug>snipMateBack
+augroup END
+
 
 " Configure LSP for rust-analyzer
 " Set completeopt to have a better completion experience
@@ -325,16 +332,6 @@ let g:gh_open_command = 'firefox '
 " Do not create a new file when saving a file.
 " (Otherwise it causes some issues with file watchers)
 set backupcopy=yes
-
-
-" Copilot Chat setup
-lua << EOF
-require("CopilotChat").setup {
-  -- See Configuration section for options
-}
-EOF
-
-
 
 
 
