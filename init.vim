@@ -16,6 +16,10 @@ Plug 'atiladefreitas/dooing'
 
 Plug 'nvim-treesitter/nvim-treesitter', { 'branch': 'main', 'do': ':TSUpdate' }
 
+" Hex editor
+Plug 'Punity122333/hexinspector.nvim'
+
+
 " WASM
 Plug 'rhysd/vim-wasm'
 
@@ -46,6 +50,7 @@ Plug 'EdenEast/nightfox.nvim'
 
 " Github
 Plug 'ruanyl/vim-gh-line'
+Plug 'gh-tui-tools/gh-review.nvim'
 
 
 " Markdown
@@ -64,6 +69,7 @@ Plug 'rafi/awesome-vim-colorschemes'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-rhubarb'
 " Plug 'cloudhead/neovim-fuzzy'
+Plug 'nvim-lua/plenary.nvim'  " required by telescope
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'tpope/vim-abolish'
 " Plug 'w0rp/ale'  " Lints
@@ -407,3 +413,17 @@ augroup wit_ft
     autocmd!
     autocmd BufRead,BufNewFile *.wit setfiletype wit
 augroup END
+
+" NASM
+" vim-polyglot replaces nvim's built-in filetype detection and has no *.asm
+" rule, so .asm files end up with an empty filetype. Force nasm (the nasm.vim
+" syntax file ships with nvim in $VIMRUNTIME/syntax/nasm.vim).
+augroup asm_ft
+    autocmd!
+    autocmd BufRead,BufNewFile *.asm setlocal filetype=nasm
+augroup END
+
+" ALE ships a nasm linter that activates with filetype=nasm, but its default
+" command omits -f, so nasm falls back to 16-bit and reports bogus
+" "instruction not supported in 16-bit mode" errors for 64-bit code.
+let g:ale_nasm_nasm_options = '-f elf64'
