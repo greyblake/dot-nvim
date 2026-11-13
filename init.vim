@@ -427,3 +427,6 @@ augroup END
 " command omits -f, so nasm falls back to 16-bit and reports bogus
 " "instruction not supported in 16-bit mode" errors for 64-bit code.
 let g:ale_nasm_nasm_options = '-f elf64'
+
+" markdown-preview.nvim: default markdown.css plus a wider page (see the file's end)
+let g:mkdp_markdown_css = expand('~/.config/nvim/markdown-preview.css')
